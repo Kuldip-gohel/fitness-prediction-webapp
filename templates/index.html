@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fitness Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Fitness Prediction App 🏋️</h1>
+    <form method="POST">
+        <input type="number" name="age" placeholder="Age" required><br>
+        <input type="number" name="weight" placeholder="Weight (kg)" required><br>
+        <input type="number" name="height" placeholder="Height (cm)" required><br>
+        <input type="number" name="heart_rate" placeholder="Heart Rate (bpm)" required><br>
+        <input type="text" name="blood_pressure" placeholder="Blood Pressure (e.g. 120/80)" required><br>
+        <input type="number" name="sleep" placeholder="Sleep Hours" required><br>
+        <input type="number" name="nutrition_quality" placeholder="Nutrition Quality (1–5)" required><br>
+        <input type="number" name="activity_index" placeholder="Activity Index (1–10)" required><br>
+
+        <select name="smokes" required>
+            <option value="0">🚭 Non-Smoker</option>
+            <option value="1">🚬 Smoker</option>
+        </select><br>
+
+        <select name="gender" required>
+            <option value="0">♀ Female</option>
+            <option value="1">♂ Male</option>
+        </select><br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+        <div class="result">
+            <h2>Result: {{ result }}</h2>
+            {% if probability %}
+                <p>Confidence: {{ probability }}%</p>
+            {% endif %}
+            <h3>Health Tip 💡:</h3>
+            <p>{{ tip }}</p>
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>
